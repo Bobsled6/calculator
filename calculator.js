@@ -1,5 +1,6 @@
 let calculator = document.querySelector(".calculator");
 let screen = document.querySelector(".screen");
+let resultScreen = document.querySelector(".resultScreen");
 let numButton = document.querySelectorAll(".numButton");
 let opButton = document.querySelectorAll(".opButton");
 let clearButton = document.querySelector(".clearButton");
@@ -35,5 +36,5 @@ let operate = function(x,y,z){
         return div(x,y);
 }};
 
-
+numButton.forEach(b => b.addEventListener("click",() => {screen.innerHTML += b.innerHTML}));
 
