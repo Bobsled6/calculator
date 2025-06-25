@@ -1,5 +1,8 @@
 let calculator = document.querySelector(".calculator");
 let screen = document.querySelector(".screen");
+let numButton = document.querySelectorAll(".numButton");
+let opButton = document.querySelectorAll(".opButton");
+let clearButton = document.querySelector(".clearButton");
 
 let add = function(x,y){
     return x + y;
@@ -31,5 +34,6 @@ let operate = function(x,y,z){
 }   else if (z === "/"){
         return div(x,y);
 }};
+
 
 
