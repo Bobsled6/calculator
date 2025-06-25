@@ -1,3 +1,6 @@
+let calculator = document.querySelector(".calculator");
+let screen = document.querySelector(".screen");
+
 let add = function(x,y){
     return x + y;
 };
@@ -27,6 +30,6 @@ let operate = function(x,y,z){
         return mult(x,y);
 }   else if (z === "/"){
         return div(x,y);
-}
-}
+}};
+
 
