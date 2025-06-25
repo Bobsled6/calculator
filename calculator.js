@@ -19,12 +19,13 @@ let mult = function(x,y){
 };
 
 let div = function(x,y){
-    return x / y;
+    if(y === "0"){return "no";}
+    else {return x / y;}
 };
 
 let a;
 let b;
-let oper;
+let oper = "";
 
 let operate = function(x,y,z){
     if (z === "+"){
@@ -41,15 +42,17 @@ numButton.forEach(b => b.addEventListener("click",() => {if (oper === "="){scree
                                                              screen.innerHTML += b.innerHTML;
                                                              oper = "";} 
                                                         else {screen.innerHTML += b.innerHTML}}));
-opButton.forEach(b => b.addEventListener("click", () => {prevScreen.innerHTML = screen.innerHTML;
+
+opButton.forEach(b => b.addEventListener("click", () => {if(!(screen.innerHTML === "")){prevScreen.innerHTML = screen.innerHTML;
                                                          screen.innerHTML = "";
-                                                         return oper = b.innerHTML;
-                                                         }));
+                                                         return oper = b.innerHTML;} else{return oper = b.innerHTML;}}));
+                                                         
 eqButton.addEventListener("click",() => {let a = prevScreen.innerHTML;
                                          let b = screen.innerHTML;
-                                         screen.innerHTML = operate(a,b,oper);
+                                         if (oper == ""){screen.innerHTML = screen.innerHTML}else{screen.innerHTML = operate(a,b,oper);
                                          prevScreen.innerHTML = "";
-                                         return oper = "="});
+                                         return oper = "="}});
+
 clearButton.addEventListener("click",() => {return a = "", b = "", oper = "", screen.innerHTML = "", prevScreen.innerHTML = "";})
 
 
