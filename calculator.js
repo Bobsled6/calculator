@@ -14,3 +14,19 @@ let div = function(x,y){
     return x / y;
 };
 
+let a;
+let b;
+let oper;
+
+let operate = function(x,y,z){
+    if (z === "+"){
+        return add(x,y);
+}   else if (z === "-"){
+        return sub(x,y);
+}   else if (z === "*"){
+        return mult(x,y);
+}   else if (z === "/"){
+        return div(x,y);
+}
+}
+
