@@ -72,7 +72,7 @@ clearButton.addEventListener("click",() => {return a = "", b = "", oper = "", te
 
 decimalButton.addEventListener("click",() => {if(testNumber % 1 === 0){testNumber += "."} displayUpdate();})
 
-backButton.addEventListener("click",() => {if(!(testNumber === "")) {testNumber = testNumber.slice(0,-1), displayUpdate();}})
+backButton.addEventListener("click",() => {if(!(testNumber === "") && !(oper === "=")) {testNumber = testNumber.slice(0,-1), displayUpdate();}})
 
 document.addEventListener('keydown', (e) => {console.log(e);
     if (e.key === "=" || e.key === "Enter"){{let a = prevtestNumber;
@@ -104,5 +104,8 @@ document.addEventListener('keydown', (e) => {console.log(e);
                         {if (oper === "="){testNumber = "";
                              testNumber += e.key;
                              oper = "";} 
-                        else {testNumber += e.key} displayUpdate();displayTwoUpdate();}                })
+                        else {testNumber += e.key} displayUpdate();displayTwoUpdate();}
+    else if(e.key === "."){if(testNumber % 1 === 0){testNumber += "."} displayUpdate();}                
+    else if(e.key === "Backspace"){if(!(testNumber === "")  && !(oper === "=")) {testNumber = testNumber.slice(0,-1), displayUpdate();}} });
+    
 
