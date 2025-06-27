@@ -1,10 +1,14 @@
 let calculator = document.querySelector(".calculator");
-let screen = document.querySelector(".screen");
-let prevScreen = document.querySelector(".prevScreen");
 let numButton = document.querySelectorAll(".numButton");
 let opButton = document.querySelectorAll(".opButton");
 let clearButton = document.querySelector(".clearButton");
 let eqButton = document.querySelector(".eqButton")
+let display = document.querySelector(".display")
+let displayTwo = document.querySelector(".displayTwo")
+
+let displayUpdate = function (){display.innerHTML = testNumber};
+let displayTwoUpdate = function(){if (!(oper === "=" && prevtestNumber === "")){displayTwo.innerHTML = prevtestNumber + "" + oper}}
+
 
 let add = function(x,y){
     return +x + +y;
@@ -26,6 +30,8 @@ let div = function(x,y){
 let a = "";
 let b = "";
 let oper = "";
+testNumber = "";
+prevtestNumber = "";
 
 let operate = function(x,y,z){
     if (z === "+"){
@@ -38,23 +44,24 @@ let operate = function(x,y,z){
         return div(x,y);
 }};
 
-numButton.forEach(b => b.addEventListener("click",() => {if (oper === "="){screen.innerHTML = "";
-                                                             screen.innerHTML += b.innerHTML;
+numButton.forEach(b => b.addEventListener("click",() => {if (oper === "="){testNumber = "";
+                                                             testNumber += b.innerHTML;
                                                              oper = "";} 
-                                                        else {screen.innerHTML += b.innerHTML}}));
+                                                        else {testNumber += b.innerHTML} displayUpdate();displayTwoUpdate();}));
 
-opButton.forEach(o => o.addEventListener("click", () => {if(!(screen.innerHTML === "") && !(prevScreen.innerHTML === "")){let a = prevScreen.innerHTML; let b = screen.innerHTML;
-                                                              prevScreen.innerHTML = operate(a,b,oper); screen.innerHTML = "";oper = o.innerHTML; } else if(!(screen.innerHTML === "")){prevScreen.innerHTML = screen.innerHTML;
-                                                              screen.innerHTML = "";
-                                                              return oper = o.innerHTML;} else{return oper = o.innerHTML;}}));
+opButton.forEach(o => o.addEventListener("click", () => {if(!(testNumber === "") && !(prevtestNumber === "")){let a = prevtestNumber; let b = testNumber;
+                                                              prevtestNumber = operate(a,b,oper); testNumber = "";oper = o.innerHTML; displayUpdate();displayTwoUpdate(); } else if(!(testNumber === "")){prevtestNumber = testNumber;
+                                                              testNumber = "";
+                                                              return oper = o.innerHTML, displayUpdate(), displayTwoUpdate();} else{ return oper = o.innerHTML,displayUpdate(),displayTwoUpdate();}}));
                                                          
-eqButton.addEventListener("click",() => {let a = prevScreen.innerHTML;
-                                         let b = screen.innerHTML;
-                                         if (oper === "" || oper === "="){screen.innerHTML = screen.innerHTML}else{screen.innerHTML = operate(a,b,oper);
-                                         prevScreen.innerHTML = "";
+eqButton.addEventListener("click",() => {let a = prevtestNumber;
+                                         let b = testNumber;
+                                         if (oper === "" || oper === "="){testNumber = testNumber}else{testNumber = operate(a,b,oper);
+                                         prevtestNumber = "";displayUpdate();displayTwo.innerHTML = "";
                                          return oper = "="}});
 
-clearButton.addEventListener("click",() => {return a = "", b = "", oper = "", screen.innerHTML = "", prevScreen.innerHTML = "";})
+clearButton.addEventListener("click",() => {return a = "", b = "", oper = "", testNumber = "", prevtestNumber = "", displayUpdate(),displayTwoUpdate();})
+
 
 
 

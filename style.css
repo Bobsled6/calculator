@@ -5,3 +5,7 @@
 .screen{ 
     border:3px solid black;
 }
+
+.display, .displayTwo{
+    color:red;
+}
