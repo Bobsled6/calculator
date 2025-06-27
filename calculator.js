@@ -6,8 +6,8 @@ let eqButton = document.querySelector(".eqButton")
 let display = document.querySelector(".display")
 let displayTwo = document.querySelector(".displayTwo")
 
-let displayUpdate = function (){display.innerHTML = testNumber};
-let displayTwoUpdate = function(){if (!(oper === "=" && prevtestNumber === "")){displayTwo.innerHTML = prevtestNumber + "" + oper}}
+let displayUpdate = function (){display.innerHTML = Math.round(testNumber * 100) / 100};
+let displayTwoUpdate = function(){if (!((Math.round(prevtestNumber * 100) / 100) === 0)){displayTwo.innerHTML = Math.round(prevtestNumber * 100) / 100 + " " + oper}}
 
 
 let add = function(x,y){
@@ -60,7 +60,7 @@ eqButton.addEventListener("click",() => {let a = prevtestNumber;
                                          prevtestNumber = "";displayUpdate();displayTwo.innerHTML = "";
                                          return oper = "="}});
 
-clearButton.addEventListener("click",() => {return a = "", b = "", oper = "", testNumber = "", prevtestNumber = "", displayUpdate(),displayTwoUpdate();})
+clearButton.addEventListener("click",() => {return a = "", b = "", oper = "", testNumber = "", prevtestNumber = "", display.innerHTML = "0", displayTwo.innerHTML = "";})
 
 
 
