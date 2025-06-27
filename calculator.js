@@ -51,8 +51,14 @@ numButton.forEach(b => b.addEventListener("click",() => {if (oper === "="){testN
                                                              oper = "";} 
                                                         else {testNumber += b.innerHTML} displayUpdate();displayTwoUpdate();}));
 
-opButton.forEach(o => o.addEventListener("click", () => {if(!(testNumber === "") && !(prevtestNumber === "")){let a = prevtestNumber; let b = testNumber;
-                                                              prevtestNumber = operate(a,b,oper); testNumber = "";oper = o.innerHTML; displayUpdate();displayTwoUpdate(); } else if(!(testNumber === "")){prevtestNumber = testNumber;
+opButton.forEach(o => o.addEventListener("click", () => {if(!(testNumber === "") && !(prevtestNumber === "")){
+                                                              let a = prevtestNumber; let b = testNumber;
+                                                              prevtestNumber = operate(a,b,oper); 
+                                                              testNumber = "";
+                                                              oper = o.innerHTML; 
+                                                              displayUpdate();
+                                                              displayTwoUpdate();} 
+                                                         else if(!(testNumber === "")){prevtestNumber = testNumber;
                                                               testNumber = "";
                                                               return oper = o.innerHTML, displayUpdate(), displayTwoUpdate();} else{ return oper = o.innerHTML,displayUpdate(),displayTwoUpdate();}}));
                                                          
@@ -67,4 +73,36 @@ clearButton.addEventListener("click",() => {return a = "", b = "", oper = "", te
 decimalButton.addEventListener("click",() => {if(testNumber % 1 === 0){testNumber += "."} displayUpdate();})
 
 backButton.addEventListener("click",() => {if(!(testNumber === "")) {testNumber = testNumber.slice(0,-1), displayUpdate();}})
+
+document.addEventListener('keydown', (e) => {console.log(e);
+    if (e.key === "=" || e.key === "Enter"){{let a = prevtestNumber;
+                        let b = testNumber;
+                        if (oper === "" || oper === "=")
+                            {testNumber = testNumber}
+                        else{testNumber = operate(a,b,oper);
+                             prevtestNumber = "";
+                             displayUpdate();
+                             displayTwo.innerHTML = "";
+                             return oper = "="}}} 
+    else if((e.key === "+") || (e.key === "-") || (e.key === "*") || (e.key === "/"))
+                        {if(!(testNumber === "") && !(prevtestNumber === "")){
+                                    let a = prevtestNumber; 
+                                    let b = testNumber;
+                                    prevtestNumber = operate(a,b,oper); 
+                                    testNumber = "";
+                                    oper = e.key; 
+                                    displayUpdate();
+                                    displayTwoUpdate();} 
+                        else if(!(testNumber === ""))
+                                    {prevtestNumber = testNumber;
+                                     testNumber = "";
+                                     return oper = e.key, 
+                                     displayUpdate(), 
+                                     displayTwoUpdate();} 
+                        else{ return oper = e.key,displayUpdate(),displayTwoUpdate();}}
+    else if((e.key >= 0) && (e.key <= 9))
+                        {if (oper === "="){testNumber = "";
+                             testNumber += e.key;
+                             oper = "";} 
+                        else {testNumber += e.key} displayUpdate();displayTwoUpdate();}                })
 
