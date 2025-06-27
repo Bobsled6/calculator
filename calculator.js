@@ -2,9 +2,11 @@ let calculator = document.querySelector(".calculator");
 let numButton = document.querySelectorAll(".numButton");
 let opButton = document.querySelectorAll(".opButton");
 let clearButton = document.querySelector(".clearButton");
-let eqButton = document.querySelector(".eqButton")
-let display = document.querySelector(".display")
-let displayTwo = document.querySelector(".displayTwo")
+let eqButton = document.querySelector(".eqButton");
+let display = document.querySelector(".display");
+let displayTwo = document.querySelector(".displayTwo");
+let decimalButton = document.querySelector(".decimal");
+let backButton = document.querySelector(".back");
 
 let displayUpdate = function (){display.innerHTML = Math.round(testNumber * 100) / 100};
 let displayTwoUpdate = function(){if (!((Math.round(prevtestNumber * 100) / 100) === 0)){displayTwo.innerHTML = Math.round(prevtestNumber * 100) / 100 + " " + oper}}
@@ -62,6 +64,7 @@ eqButton.addEventListener("click",() => {let a = prevtestNumber;
 
 clearButton.addEventListener("click",() => {return a = "", b = "", oper = "", testNumber = "", prevtestNumber = "", display.innerHTML = "0", displayTwo.innerHTML = "";})
 
+decimalButton.addEventListener("click",() => {if(testNumber % 1 === 0){testNumber += "."} displayUpdate();})
 
-
+backButton.addEventListener("click",() => {if(!(testNumber === "")) {testNumber = testNumber.slice(0,-1), displayUpdate();}})
 
