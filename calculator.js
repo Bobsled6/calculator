@@ -23,8 +23,8 @@ let div = function(x,y){
     else {return x / y;}
 };
 
-let a;
-let b;
+let a = "";
+let b = "";
 let oper = "";
 
 let operate = function(x,y,z){
@@ -43,13 +43,14 @@ numButton.forEach(b => b.addEventListener("click",() => {if (oper === "="){scree
                                                              oper = "";} 
                                                         else {screen.innerHTML += b.innerHTML}}));
 
-opButton.forEach(b => b.addEventListener("click", () => {if(!(screen.innerHTML === "")){prevScreen.innerHTML = screen.innerHTML;
-                                                         screen.innerHTML = "";
-                                                         return oper = b.innerHTML;} else{return oper = b.innerHTML;}}));
+opButton.forEach(o => o.addEventListener("click", () => {if(!(screen.innerHTML === "") && !(prevScreen.innerHTML === "")){let a = prevScreen.innerHTML; let b = screen.innerHTML;
+                                                              prevScreen.innerHTML = operate(a,b,oper); screen.innerHTML = "";oper = o.innerHTML; } else if(!(screen.innerHTML === "")){prevScreen.innerHTML = screen.innerHTML;
+                                                              screen.innerHTML = "";
+                                                              return oper = o.innerHTML;} else{return oper = o.innerHTML;}}));
                                                          
 eqButton.addEventListener("click",() => {let a = prevScreen.innerHTML;
                                          let b = screen.innerHTML;
-                                         if (oper == ""){screen.innerHTML = screen.innerHTML}else{screen.innerHTML = operate(a,b,oper);
+                                         if (oper === "" || oper === "="){screen.innerHTML = screen.innerHTML}else{screen.innerHTML = operate(a,b,oper);
                                          prevScreen.innerHTML = "";
                                          return oper = "="}});
 
