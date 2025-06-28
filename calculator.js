@@ -8,8 +8,8 @@ let displayTwo = document.querySelector(".displayTwo");
 let decimalButton = document.querySelector(".decimal");
 let backButton = document.querySelector(".back");
 
-let displayUpdate = function (){display.innerHTML = Math.round(testNumber * 100) / 100};
-let displayTwoUpdate = function(){if (!((Math.round(prevtestNumber * 100) / 100) === 0)){displayTwo.innerHTML = Math.round(prevtestNumber * 100) / 100 + " " + oper}}
+let displayUpdate = function (){display.innerHTML = Math.round(testNumber * 100000) / 100000};
+let displayTwoUpdate = function(){if (!((Math.round(prevtestNumber * 100) / 100) === 0)){displayTwo.innerHTML = Math.round(prevtestNumber * 100) / 100 + " "  + "("+ oper + ")"}}
 
 
 let add = function(x,y){
@@ -74,9 +74,10 @@ decimalButton.addEventListener("click",() => {if(testNumber % 1 === 0){testNumbe
 
 backButton.addEventListener("click",() => {if(!(testNumber === "") && !(oper === "=")) {testNumber = testNumber.slice(0,-1), displayUpdate();}})
 
-document.addEventListener('keydown', (e) => {if (document.activeElement != document.body) {
-    document.activeElement.blur()}
-    if (e.key === "=" || e.key === "Enter"){{let a = prevtestNumber;
+document.addEventListener('keydown', (e) => {if (document.activeElement != document.body) 
+                                                {document.activeElement.blur()}
+    if (e.key === "=" || e.key === "Enter"){{
+                        let a = prevtestNumber;
                         let b = testNumber;
                         if (oper === "" || oper === "=")
                             {testNumber = testNumber}
