@@ -65,7 +65,6 @@ button{
  gap:1.875rem;
  padding-right: 0.3125rem;
  text-align: start;
- margin-bottom: -1.875rem;
 }
  .style-script-regular {
   font-family: "Style Script", cursive;
@@ -74,12 +73,12 @@ button{
 }
 p{
     margin-right: auto;
-    margin-left: 1.875rem;
+    margin-left: 1.1rem;
     color: white;
     font-weight: bolder;
     font-style: italic;
-    height:2.4375rem;
-    font-size: 1.875rem;
+    height:2rem;
+    font-size: 1.2rem;
     font-family: "Style Script",cursive;
 }
 

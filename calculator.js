@@ -7,8 +7,10 @@ let display = document.querySelector(".display");
 let displayTwo = document.querySelector(".displayTwo");
 let decimalButton = document.querySelector(".decimal");
 let backButton = document.querySelector(".back");
+let plusMinus = document.querySelector(".plusMinus");
+let minus = document.querySelector(".minusButton")
 
-let displayUpdate = function (){if(isNaN(display.innerHTML = Math.round(testNumber * 100000) / 100000)){display.innerHTML = "no :)  "}else{display.innerHTML = Math.round(testNumber * 100000) / 100000}};
+let displayUpdate = function (){if(isNaN(display.innerHTML = Math.round(testNumber * 100000) / 100000) && !(testNumber === "-")){display.innerHTML = "no :)  "}else if(testNumber === "-"){display.innerHTML = "-"}else{display.innerHTML = Math.round(testNumber * 100000) / 100000}};
 let displayTwoUpdate = function(){if(isNaN((Math.round(prevtestNumber * 100) / 100))){display.innerHTML = "no :)  "} else if (!((Math.round(prevtestNumber * 100) / 100) === 0)){displayTwo.innerHTML = Math.round(prevtestNumber * 100) / 100 + " "  + "( "+ oper + " )"}}
 
 
@@ -72,7 +74,9 @@ clearButton.addEventListener("click",() => {return a = "", b = "", oper = "", te
 
 decimalButton.addEventListener("click",() => {if(testNumber % 1 === 0){testNumber += "."} displayUpdate();})
 
-backButton.addEventListener("click",() => {if(!(testNumber === "") && !(oper === "=")) {testNumber = testNumber.slice(0,-1), displayUpdate();}})
+backButton.addEventListener("click",() => {if(!(testNumber === "") && !(oper === "=")) {testNumber = testNumber.toString().slice(0,-1), displayUpdate();}})
+
+plusMinus.addEventListener("click", () => {testNumber = testNumber * -1,displayUpdate(),console.log(testNumber)})
 
 document.addEventListener('keydown', (e) => {if (document.activeElement != document.body) 
                                                 {document.activeElement.blur()}
@@ -86,7 +90,7 @@ document.addEventListener('keydown', (e) => {if (document.activeElement != docum
                              displayUpdate();
                              displayTwo.innerHTML = "";
                              return oper = "="}}} 
-    else if((e.key === "+") || (e.key === "-") || (e.key === "*") || (e.key === "/"))
+    else if((e.key === "+") || (e.key === "*") || (e.key === "/"))
                         {if(!(testNumber === "") && !(prevtestNumber === "")){
                                     let a = prevtestNumber; 
                                     let b = testNumber;
@@ -109,6 +113,35 @@ document.addEventListener('keydown', (e) => {if (document.activeElement != docum
                         else {testNumber += e.key} displayUpdate();displayTwoUpdate();}
     else if(e.key === "."){if(testNumber % 1 === 0){testNumber += "."} displayUpdate();}                
     else if(e.key === "Backspace"){if(!(testNumber === "")  && !(oper === "=")) {testNumber = testNumber.slice(0,-1), displayUpdate();}}
-    else if(e.key === "Escape"){return a = "", b = "", oper = "", testNumber = "", prevtestNumber = "", display.innerHTML = "0", displayTwo.innerHTML = "";} });
-    
+    else if(e.key === "Escape"){return a = "", b = "", oper = "", testNumber = "", prevtestNumber = "", display.innerHTML = "0", displayTwo.innerHTML = "";}
+    else if((e.key === "-") && (testNumber === "")){testNumber = "-",displayUpdate();}
+    else if((e.key === "-") && !(testNumber === "")){
+                                if(!(testNumber === "") && !(prevtestNumber === "")){
+                                    let a = prevtestNumber; 
+                                    let b = testNumber;
+                                    prevtestNumber = operate(a,b,oper); 
+                                    testNumber = "";
+                                    oper = e.key; 
+                                    displayUpdate();
+                                    displayTwoUpdate();} 
+                                else if(!(testNumber === ""))
+                                    {prevtestNumber = testNumber;
+                                     testNumber = "";
+                                     return oper = e.key, 
+                                     displayUpdate(), 
+                                     displayTwoUpdate();} 
+                                else{ return oper = e.key,displayUpdate(),displayTwoUpdate();}}
+});
+
+minus.addEventListener("click", () => {if((testNumber === "")){testNumber = "-",displayUpdate();}
+                                    else {if(!(testNumber === "") && !(prevtestNumber === "")){
+                                            let a = prevtestNumber; let b = testNumber;
+                                                              prevtestNumber = operate(a,b,oper); 
+                                                              testNumber = "";
+                                                              oper = "-"; 
+                                                              displayUpdate();
+                                                              displayTwoUpdate();} 
+                                         else if(!(testNumber === "")){prevtestNumber = testNumber;
+                                                              testNumber = "";
+                                                              return oper = "-", displayUpdate(), displayTwoUpdate();} else{ return oper = "-",displayUpdate(),displayTwoUpdate();}}})
 
