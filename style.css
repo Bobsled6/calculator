@@ -1,8 +1,10 @@
 .calculator{
     display: flex;
     flex-wrap: wrap;
-    width: 400px;
-    height: 640px;
+    max-width: 400px;
+    min-width: 400px;
+    min-height: 640px;
+    max-height: 640px;
     justify-content: center;
     align-items: center;
     gap:30px;
