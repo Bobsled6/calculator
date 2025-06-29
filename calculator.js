@@ -9,7 +9,7 @@ let decimalButton = document.querySelector(".decimal");
 let backButton = document.querySelector(".back");
 
 let displayUpdate = function (){if(isNaN(display.innerHTML = Math.round(testNumber * 100000) / 100000)){display.innerHTML = "no :)  "}else{display.innerHTML = Math.round(testNumber * 100000) / 100000}};
-let displayTwoUpdate = function(){if(isNaN((Math.round(prevtestNumber * 100) / 100))){display.innerHTML = "no :)  "} else if (!((Math.round(prevtestNumber * 100) / 100) === 0)){displayTwo.innerHTML = Math.round(prevtestNumber * 100) / 100 + " "  + "("+ oper + ")"}}
+let displayTwoUpdate = function(){if(isNaN((Math.round(prevtestNumber * 100) / 100))){display.innerHTML = "no :)  "} else if (!((Math.round(prevtestNumber * 100) / 100) === 0)){displayTwo.innerHTML = Math.round(prevtestNumber * 100) / 100 + " "  + "( "+ oper + " )"}}
 
 
 let add = function(x,y){
