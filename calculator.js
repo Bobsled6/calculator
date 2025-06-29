@@ -8,8 +8,8 @@ let displayTwo = document.querySelector(".displayTwo");
 let decimalButton = document.querySelector(".decimal");
 let backButton = document.querySelector(".back");
 
-let displayUpdate = function (){display.innerHTML = Math.round(testNumber * 100000) / 100000};
-let displayTwoUpdate = function(){if (!((Math.round(prevtestNumber * 100) / 100) === 0)){displayTwo.innerHTML = Math.round(prevtestNumber * 100) / 100 + " "  + "("+ oper + ")"}}
+let displayUpdate = function (){if(isNaN(display.innerHTML = Math.round(testNumber * 100000) / 100000)){display.innerHTML = "no :)  "}else{display.innerHTML = Math.round(testNumber * 100000) / 100000}};
+let displayTwoUpdate = function(){if(isNaN((Math.round(prevtestNumber * 100) / 100))){display.innerHTML = "no :)  "} else if (!((Math.round(prevtestNumber * 100) / 100) === 0)){displayTwo.innerHTML = Math.round(prevtestNumber * 100) / 100 + " "  + "("+ oper + ")"}}
 
 
 let add = function(x,y){
@@ -25,8 +25,8 @@ let mult = function(x,y){
 };
 
 let div = function(x,y){
-    if(y === "0"){return "no";}
-    else {return x / y;}
+    if(y === "0"){return a = "", b = "", oper = "", testNumber = "", prevtestNumber = "",display.innerHTML = "no"}
+    else {return x / y}
 };
 
 let a = "";
