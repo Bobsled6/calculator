@@ -76,7 +76,7 @@ decimalButton.addEventListener("click",() => {if(testNumber % 1 === 0){testNumbe
 
 backButton.addEventListener("click",() => {if(!(testNumber === "") && !(oper === "=")) {testNumber = testNumber.toString().slice(0,-1), displayUpdate();}})
 
-plusMinus.addEventListener("click", () => {testNumber = testNumber * -1,displayUpdate(),console.log(testNumber)})
+plusMinus.addEventListener("click", () => {testNumber = testNumber * -1,displayUpdate()})
 
 document.addEventListener('keydown', (e) => {if (document.activeElement != document.body) 
                                                 {document.activeElement.blur()}
@@ -134,14 +134,14 @@ document.addEventListener('keydown', (e) => {if (document.activeElement != docum
 });
 
 minus.addEventListener("click", () => {if((testNumber === "")){testNumber = "-",displayUpdate();}
-                                    else {if(!(testNumber === "") && !(prevtestNumber === "")){
-                                            let a = prevtestNumber; let b = testNumber;
+                                       else {if(!(testNumber === "") && !(prevtestNumber === "")){
+                                                              let a = prevtestNumber; let b = testNumber;
                                                               prevtestNumber = operate(a,b,oper); 
                                                               testNumber = "";
                                                               oper = "-"; 
                                                               displayUpdate();
                                                               displayTwoUpdate();} 
-                                         else if(!(testNumber === "")){prevtestNumber = testNumber;
+                                       else if(!(testNumber === "")){prevtestNumber = testNumber;
                                                               testNumber = "";
                                                               return oper = "-", displayUpdate(), displayTwoUpdate();} else{ return oper = "-",displayUpdate(),displayTwoUpdate();}}})
 
