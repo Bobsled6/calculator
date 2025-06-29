@@ -76,9 +76,11 @@ p{
 }
 
 .fullScreen{
-    width: 100%;
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    max-height: 100vh;
+    min-width: 100vh;
+    min-height: 100vh;
+    
 }
